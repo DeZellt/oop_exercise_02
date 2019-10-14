@@ -49,6 +49,22 @@ bitstring bitstring::operator~() const { // побитовое "НЕ"
     return result;
 }
 
+bitstring bitstring::operator>>(const int32_t i) const {
+    bitstring result{};
+    result.m_first = m_first;
+    result.m_second = m_second;
+    result.shiftRight(i);
+    return result;
+}
+
+bitstring bitstring::operator<<(const int32_t i) const {
+    bitstring result{};
+    result.m_first = m_first;
+    result.m_second = m_second;
+    result.shiftLeft(i);
+    return result;
+}
+
 void bitstring::shiftLeft(int32_t i) { // сдвиг на произвольное кол-во бит влево
     for (int32_t k=0; k<i; k++) shiftLeftOne();
 }

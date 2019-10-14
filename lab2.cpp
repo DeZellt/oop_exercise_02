@@ -6,8 +6,6 @@ int main() {
 
   uint32_t bitleft;
   uint32_t bitright;
-  uint32_t incfirst;
-  uint64_t incsecond;
 
   bitstring literal_test = "8928 1179048"_bitstring;
   std::cout << "Строка, сконструированная с помощью пользовательского литерала:" << literal_test << std::endl;
@@ -33,18 +31,16 @@ int main() {
   std::cout << "Введите через пробел кол-во битов, на которое требуется сделать сдвиг" << std::endl;
   std::cin >> bitleft >> bitright;
   std::cout << "Сейчас будет проведен сдвиг на " << bitleft << " битов влево и на " << bitright << " битов вправо. После сдвига будет печататься состояние строки." << std::endl;
-  a.shiftLeft(bitleft);
-  std::cout << a << std::endl;
-  a.shiftRight(bitright);
-  std::cout << a << std::endl;
+  std::cout << (a << bitleft) << std::endl;
+  std::cout << (a >> bitright) << std::endl;
   
   std::cout << "А теперь проверим еще функции. Для того, чтобы проверить функцию включения, введите еще одно число в следующем формате: *32-битовая строка* + *64-битовая строка*." << std::endl;
-  std::cin >> incfirst >> incsecond;
-  bitstring inc{incfirst, incsecond};
+  bitstring inc;
+  std::cin >> inc;
   std::cout << "Кол-во единиц равно " << a.countone() << std::endl;
   std::cout << a << " == " << inc << "? Это " << ((a == inc) ? "правда" : "неправда") << std::endl;
   std::cout << a << " > " << inc << "? Это " << ((a > inc) ? "правда" : "неправда") << std::endl;
   std::cout << a << " < " << inc << "? Это " << ((a < inc) ? "правда" : "неправда") << std::endl;
-  std::cout << "В " << a << " включено " << inc.getF() << " " << inc.getS() << "? Это " << (a.include(inc) ? "правда" : "неправда") << std::endl;
+  std::cout << "В " << a << " включено " << inc << "? Это " << (a.include(inc) ? "правда" : "неправда") << std::endl;
   return 0;
 }
